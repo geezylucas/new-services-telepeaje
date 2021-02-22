@@ -11,4 +11,6 @@ def fill_db_prosis():
     start = datetime.datetime(2020, 10, 22)
     end = datetime.datetime(2020, 12, 4)
     transactions = oracle_extract.get_transactions(start, end)
-    print(transactions)
+
+    for row in transactions:
+        print(row)

@@ -46,7 +46,8 @@ class ExtractData(ConnOracle):
                                                 AND a.id_gare = b.id_gare
                                                 AND to_char(a.date_transaction, 'YYYY-MM-DD HH24:MI:SS') = to_char(b.date_image, 'YYYY-MM-DD HH24:MI:SS') )
             WHERE
-                a.date_transaction BETWEEN TO_DATE('22-10-2020 00:00:00', 'dd-mm-yyyy hh24:mi:ss') AND TO_DATE('04-12-2020 00:00:00', 'dd-mm-yyyy hh24:mi:ss')
+                a.date_transaction BETWEEN TO_DATE('{start.strftime('%d-%m-%Y %H:%M:%S')}', 'dd-mm-yyyy hh24:mi:ss') 
+                AND TO_DATE('{end.strftime('%d-%m-%Y %H:%M:%S')}', 'dd-mm-yyyy hh24:mi:ss')
                 AND a.id_paiement = 15
                 AND ( a.id_voie = '1'
                     OR a.id_voie = '2'

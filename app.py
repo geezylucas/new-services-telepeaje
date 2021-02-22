@@ -5,7 +5,7 @@ from base_class_winservice import SMWinservice
 
 
 class PythonCornerExample(SMWinservice):
-    _svc_name_ = "PythonGeezyExample"
+    _svc_name_ = "NewServiceTelepeaje"
     _svc_display_name_ = "Python Geezy's Winservice Example"
     _svc_description_ = "That's a great winservice! :)"
 
