@@ -19,15 +19,15 @@ class ConnOracle(object):
         try:
             self.__conn = cx_Oracle.connect(
                 user=self.__user, password=self.__password, dsn=dsn_tns)
-        except cx_Oracle.Error as error:
-            print(error)
+        except cx_Oracle.Error as err:
+            print(err)
 
     def execute_query(self, query=str):
         try:
             cursor = self.__conn.cursor()
             return cursor.execute(query)
-        except cx_Oracle.Error as error:
-            print(error)
+        except cx_Oracle.Error as err:
+            print(err)
 
     def __del__(self):
         self.__conn.close()
