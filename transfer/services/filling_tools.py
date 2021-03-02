@@ -15,6 +15,11 @@ mssql_insert = mssql_insert_data.InsertData(
 
 
 def fill_db_prosis():
+    # open connections
+    oracle_extract.open_connection()
+    mssql_extract.open_connection()
+    mssql_insert.open_connection()
+
     # get last transaction in sql server
     last_transaction = mssql_extract.get_last_row()
 
@@ -24,9 +29,12 @@ def fill_db_prosis():
         start = datetime.datetime(2020, 10, 22)
         end = datetime.datetime(2020, 10, 23)
     else:
+        minutes = 5
+        minutes_subtract = datetime.timedelta(minutes=minutes)
+
         start_str = f'{last_transaction[0]} {last_transaction[1]}'
         start = datetime.datetime.strptime(
-            start_str, '%Y-%m-%d %H:%M:%S')
+            start_str, '%Y-%m-%d %H:%M:%S') - minutes_subtract
         end = datetime.datetime.now()
 
     # get transactions
@@ -34,3 +42,8 @@ def fill_db_prosis():
 
     # insert transactions
     mssql_insert.insert_transactions(transactions)
+
+    # close connections
+    oracle_extract.close_connection()
+    mssql_extract.close_connection()
+    mssql_insert.close_connection()

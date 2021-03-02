@@ -10,9 +10,8 @@ class ConnMSSQLServer(object):
         self.__password = password
         self.__conn = None
 
-        self.open_connection()
-
     def open_connection(self):
+        print("open sql")
         self.__conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
                                      f'Server={self.__server};'
                                      f'Database={self.__database};'
@@ -35,5 +34,6 @@ class ConnMSSQLServer(object):
         except pyodbc.Error as err:
             print(err)
 
-    def __del__(self):
+    def close_connection(self):
+        print("close sql")
         self.__conn.close()

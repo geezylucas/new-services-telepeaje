@@ -1,6 +1,4 @@
 import time
-import random
-from pathlib import Path
 from base_class_winservice import SMWinservice
 from transfer import app
 
@@ -19,9 +17,6 @@ class NewServiceTelepeaje(SMWinservice):
     def main(self):
         while self.isrunning:
             app.run()
-            random.seed()
-            x = random.randint(1, 1000000)
-            Path(f'c:\{x}.txt').touch()
             time.sleep(120)
 
 

@@ -11,9 +11,8 @@ class ConnOracle(object):
         self.__password = password
         self.__conn = None
 
-        self.open_connection()
-
     def open_connection(self):
+        print("open oracle")
         dsn_tns = cx_Oracle.makedsn(
             self.__server, self.__port, service_name=self.__service_name)
         try:
@@ -29,5 +28,6 @@ class ConnOracle(object):
         except cx_Oracle.Error as err:
             print(err)
 
-    def __del__(self):
+    def close_connection(self):
+        print("close oracle")
         self.__conn.close()
